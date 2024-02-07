@@ -1,0 +1,46 @@
+<div class="details" *ngIf="question">
+  <h1>Frage: {{question.frage}}</h1>
+  <div class="actions">
+    <button class="green" (click)="loesen.login()" *ngIf="!loesen.isResolved">Lösungen anzeigen</button>
+    <button class="red" (click)="loesen.logout()" *ngIf="loesen.isResolved">Lösungen verbergen</button>
+  </div>
+  <table>
+      <tr>
+        <th>
+          <h2>Antwort Möglichkeiten</h2>
+        </th>
+      </tr>
+      <tr>
+        <td *ngIf="!loesen.isResolved">
+          <li *ngFor="let antwort of question.antworten" >{{antwort.option}}</li>
+        </td>
+        <td *ngIf="loesen.isResolved">
+          <li *ngFor="let antwort of question.antworten" [ngClass]="{'green': antwort.istRichtig}">
+            {{antwort.option}}
+          </li>
+        </td>
+      </tr>
+  </table>
+  <table>
+        <tr>
+          <th>
+
+            <a *ngIf="pquest" [routerLink]="['..',pquest.id]" class="button">
+              prev
+            </a>
+            <a *ngIf="nquest" [routerLink]="['..',nquest.id]" class="button">
+              next
+            </a>
+          </th>
+        </tr><tr>
+          <div class="center">
+            <a class="button" routerLink="..">   Back to List   </a>
+          </div>
+        </tr>
+  </table>
+</div>
+
+
+
+
+

@@ -1,0 +1,5 @@
+nav button.active {
+  background-color: #fff; /* Hintergrundfarbe für aktive Schaltfläche */
+  color: #7285a5; /* Textfarbe für aktive Schaltfläche */
+  /* Weitere Stile nach Bedarf hinzufügen */
+}

@@ -1,0 +1,59 @@
+
+<nav>
+  <button *ngFor="let question of checkListe; let i = index"
+          [class.active]="index === i">
+    <div>{{ question.id }}</div>
+  </button>
+</nav>
+
+<div class="details">
+  <h1>Frage: {{checkListe[index].frage}}</h1>
+    <table>
+      <tr>
+        <th >
+          <div *ngIf="!checkListe[index].fillin">Antwort Möglichkeiten</div>
+          <div *ngIf="!checkListe[index].antworten">Eingabe</div>
+        </th>
+      </tr>
+      <tr > <!--Antwortenfeld-->
+        <div *ngIf="!checkListe[index].fillin"> <!--Filin oder klick-->
+          <div *ngIf="multiTyp[index]===false"> <!--single-->
+            <li *ngFor="let antwort of checkListe[index].antworten;index as i">
+              <!--dynamische Ausgabe der radio buttons, aber zusammengefasst als ein object, damit nur ein button gewählt werden kann -->
+                <label for="answer{{antwort.option}}">
+                <input id="answer{{antwort.option}}" [value]='i' type="radio" name="Antworten" [(ngModel)]="eingabeS">
+                {{antwort.option}}
+              </label>
+              <!--<input type="radio" [(ngModel)]="sdfsd" [value]="antwort.option"> {{antwort.option}}-->
+            </li>
+          </div>
+          <div *ngIf="multiTyp[index]===true"><!--multi-->
+            <li *ngFor="let antwort of checkListe[index].antworten; index as i">
+              <input type="checkbox" [(ngModel)]="eingabeM[i]">
+              {{antwort.option}}
+            </li>
+          </div>
+        </div>
+        <div *ngIf="!checkListe[index].antworten"><!--fillin-->
+          <input type="text" [(ngModel)]="eingabeT">
+        </div>
+      </tr>
+    </table>
+</div>
+  <table>
+        <tr>
+          <th>
+<!-- der zurück button wird noch entfernt -->
+            <button *ngIf="index > 0" (click)='back()'>
+              prev
+            </button>
+            <button *ngIf="index < (checkListe.length-1)" (click)='next()'>
+              Weiter
+            </button>
+            <button *ngIf="index === checkListe.length-1" (click)='next()'>
+              Beenden
+            </button>
+          </th>
+        </tr>
+  </table>
+

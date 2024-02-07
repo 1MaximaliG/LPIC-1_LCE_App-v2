@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ResolverService } from './shared/resolver.service';
 
 @Component({
   selector: 'lpic1-root',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  constructor(public loesen: ResolverService){}
   title = 'LPIC-1_LCE_App-v2';
 }

@@ -1,0 +1,11 @@
+<h1>Lernen</h1>
+<ul class="book-list">
+  <li *ngFor="let question of questions">
+           <lpic1-quest-list-item [question]="question"></lpic1-quest-list-item>
+  </li>
+
+  <li *ngIf="!questions.length">
+    hab keine Fragen mehr!
+  </li>
+</ul>
+
